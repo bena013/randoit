@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Randomizer Item Tracker</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+	<style>
+		body {
+			background-color: #1a1b16;
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+            font-family: 'Press Start 2P', sans-serif;
+		}
+		
+		.tabs {
+			overflow: hidden;
+			border-bottom: 1px solid white;
+		}
+		
+		.tab {
+			float: left;
+			cursor: pointer;
+			padding: 12px 16px;
+			font-size: 18px;
+			color: white;
+			transition: background-color 0.3s;
+		}
+		
+		.tab:hover {
+			background-color: #333;
+		}
+		
+		.tab.active {
+			background-color: white;
+			color: black;
+		}
+		
+		.tabcontent {
+			display: none;
+			padding: 20px;
+            max-width: 600px;
+		}
+		
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+			grid-gap: 4px;
+			margin: 20px;
+		}
+		
+		.grid img {
+			width: 70%;
+			height: auto;
+			filter: grayscale(100%);
+			transition: filter 0.3s;
+			cursor: pointer;
+		}
+
+        span {
+            color: aliceblue;
+            z-index: 1;
+            float: left;
+            border-radius: 50px;
+            background-color: #000;
+            font-size: large;
+            position: relative;
+            padding: 10px;
+            font-weight: bolder;
+        }
+
+        .counter-image {
+            filter: none !important;
+        }
+    
+
+      
+@keyframes rise {
+  from { bottom: -30px; opacity: 0; }
+  to { bottom: 20px; opacity: 1; }
+}
+		
+		.grid img:hover {
+			filter: grayscale(0%);
+		}
+		
+		@media (max-width: 768px) {
+			.grid {
+				grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
+				margin: 10px;
+			}
+			
+			.tab {
+				font-size: 16px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+      
+	<div class="tabs">
+		<div class="tab active" onclick="openTab(event, 'grid1')">Super Metroid</div>
+		<div class="tab" onclick="openTab(event, 'grid2')">Zelda Link to the Past</div>
+	</div>
+	
+	<div id="grid1" class="tabcontent">
+		<div class="grid">
+			<img src="sm/draygon.png" onclick="toggleColor(this)">
+			<img src="sm/kraid.png" onclick="toggleColor(this)">
+			<img src="sm/phantoon.png" onclick="toggleColor(this)">
+			<img src="sm/ridley.png" onclick="toggleColor(this)">
+            <img src="sm/filler.png" onclick="toggleColor(this)">
+		</div>
+        <div class="grid">
+			<img src="sm/charge.png" onclick="toggleColor(this)">
+			<img src="sm/spazer.png" onclick="toggleColor(this)">
+			<img src="sm/plasma.png" onclick="toggleColor(this)">
+			<img src="sm/wave.png" onclick="toggleColor(this)">
+            <img src="sm/ice.png" onclick="toggleColor(this)">
+		</div>
+        <div class="grid">
+			<img src="sm/varia.png" onclick="toggleColor(this)">
+			<img src="sm/grav.png" onclick="toggleColor(this)">
+			<img src="sm/grapple.png" onclick="toggleColor(this)">
+			<img src="sm/xray.png" onclick="toggleColor(this)">
+            <img src="sm/filler.png" onclick="toggleColor(this)">
+		</div>
+        <div class="grid">
+			<img src="sm/morph.png" onclick="toggleColor(this)">
+			<img src="sm/bomb.png" onclick="toggleColor(this)">
+			<img src="sm/spring.png" onclick="toggleColor(this)">
+			<img src="sm/screw.png" onclick="toggleColor(this)">
+            <img src="sm/filler.png" onclick="toggleColor(this)">
+		</div>
+        <div class="grid">
+			<img src="sm/hjb.png" onclick="toggleColor(this)">
+			<img src="sm/space.png" onclick="toggleColor(this)">
+			<img src="sm/speed.png" onclick="toggleColor(this)">
+			<img src="sm/filler.png" onclick="toggleColor(this)">
+            <img src="sm/filler.png" onclick="toggleColor(this)">
+		</div>
+
+        <div class="grid">
+            <div class="container">
+            <img class="counter-image" src="sm/missle.png" onclick="incrementCounter('counter1')">
+            <span id="counter1">0</span>
+            </div>
+            <div class="container">
+            <img class="counter-image" src="sm/smissle.png" onclick="incrementCounter('counter2')">
+            <span id="counter2">0</span>
+            </div>
+            <div class="container">
+            <img class="counter-image" src="sm/sbomb.png" onclick="incrementCounter('counter3')">
+            <span id="counter3">0</span>
+            </div>
+            <div class="container">
+            <img class="counter-image" src="sm/energy.png" onclick="incrementCounter('counter4')">
+            <span id="counter4">0</span>
+            </div>
+            <div class="container">
+            <img class="counter-image" src="sm/tank.png" onclick="incrementCounter('counter5')">
+            <span id="counter5">0</span> 
+            </div>             
+          </div>
+
+	</div>
+	
+	<div id="grid2" class="tabcontent">
+		<div class="grid">
+			<img src="black-white-image5.jpg" onclick="toggleColor(this)">
+			<img src="black-white-image6.jpg" onclick="toggleColor(this)">
+			<img src="black-white-image7.jpg" onclick="toggleColor(this)">
+			<img src="black-white-image8.jpg" onclick="toggleColor(this)">
+		</div>
+	</div>
+
+    
+    <script>
+        window.addEventListener('load', function() {
+          var images = document.getElementsByTagName('img');
+          for (var i = 0; i < images.length; i++) {
+            var img = new Image();
+            img.src = images[i].src;
+          }
+        });
+      </script>
+      
+	
+	<script>
+        function openTab(evt, tabName) {
+            // Get all elements with class="tabcontent" and hide them
+            let tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            // Get all elements with class="tab" and remove the class "active"
+            let tab = document.getElementsByClassName("tab");
+            for (let i = 0; i < tab.length; i++) {
+                tab[i].className = tab[i].className.replace(" active", "");
+            }
+            
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        function toggleColor(img) {
+            if (img.style.filter === "grayscale(100%)") {
+                img.style.filter = "grayscale(0%)";
+            } else {
+                img.style.filter = "grayscale(100%)";
+            }
+        }
+    </script>
+
+    <script>
+        function incrementCounter(counterId) {
+        var counter = document.getElementById(counterId);
+        var count = parseInt(counter.innerHTML);
+        count++;
+        counter.innerHTML = count;
+        }
+    </script>
+
+    
