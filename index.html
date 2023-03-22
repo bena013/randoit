@@ -86,9 +86,19 @@
 		
 		@media (max-width: 768px) {
 			.grid {
-				grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
+				/*grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));*/
 				margin: 10px;
+                grid-template-columns: repeat(2, 1fr); /* show 2 items per row */
 			}
+
+            .grid img {
+			width: 50%;
+			height: auto;
+			filter: grayscale(100%);
+			transition: filter 0.3s;
+			cursor: pointer;
+            padding: 10px;
+		}
 			
 			.tab {
 				font-size: 16px;
@@ -174,18 +184,6 @@
 			<img src="black-white-image8.jpg" onclick="toggleColor(this)">
 		</div>
 	</div>
-
-    
-    <script>
-        window.addEventListener('load', function() {
-          var images = document.getElementsByTagName('img');
-          for (var i = 0; i < images.length; i++) {
-            var img = new Image();
-            img.src = images[i].src;
-          }
-        });
-      </script>
-      
 	
 	<script>
         function openTab(evt, tabName) {
